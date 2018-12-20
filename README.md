@@ -20,3 +20,18 @@ Open folder and follow the instruction there in README.md
 - Server - https://animeapp1.herokuapp.com
 
 > “Berani dulu aja, nangis belakangan” ~ Pratama Agung Sumirat
+
+# Thanks to :
+```
+- Muhammad Iqbal
+- Isqi Ariza
+- Ega Wachid Radiegtya
+```
+
+# Sponsored :
+```
+- Heroku
+- Google cloud vps
+- Arkademy
+- Dumbways
+```
