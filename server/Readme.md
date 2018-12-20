@@ -48,3 +48,19 @@ DB_DATABASE=animes
 SESSION_DRIVER=cookie
 HASH_DRIVER=bcrypt
 ```
+### Endpoint
+| end Point     | description   |
+| ------------- | ------------- |
+| https://animeapp1.herokuapp.com/api?sort=all&content=10&page=1 | get all anime  |
+| https://animeapp1.herokuapp.com/api?sort=movie&content=10&page=1  | get all movie  |
+| https://animeapp1.herokuapp.com/api?sort=random&content=10&page=1  | get random anime  |
+| https://animeapp1.herokuapp.com/api?sort=popular&content=10&page=1  | get popular anime  |
+| https://animeapp1.herokuapp.com/api?sort=trending&content=10&page=1  | get trending anime  |
+| https://animeapp1.herokuapp.com/api?sort=topall&content=10&page=1  | get top anime  |
+| https://animeapp1.herokuapp.com/api?sort=latest&content=10&page=1  | get new anime  |
+| https://animeapp1.herokuapp.com/api/genre  | get all genre  |
+| https://animeapp1.herokuapp.com/api/anime/id | get det detail anime  |
+| https://animeapp1.herokuapp.com/api/anime/id/video?content=10&page=1  | get all episode anime  |
+| https://animeapp1.herokuapp.com/api/genre/Action?content=10&page=1 | get anime with genre |
+| https://animeapp1.herokuapp.com/api/A?content=10&page=1 | get sort by aplhabet |
+| https://animeapp1.herokuapp.com/api/related?genrePertama=idgenre1&genreKedua=idgenre2&content=10&page=1 | get anime with genre |
