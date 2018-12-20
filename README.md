@@ -6,7 +6,6 @@ Project for Arkademy Bootcamp Task, create like Netflix App that scrape video fr
 > “Menikahlah sebelum mapan, Kalo sudah mapan maka harus nikah lagi” ~ Mas Iqbal
 
 ## Folder:
-
 1. Web (React)
 2. Mobile (React Native)
 3. Backend (Adonis)
@@ -16,22 +15,17 @@ Project for Arkademy Bootcamp Task, create like Netflix App that scrape video fr
 Open folder and follow the instruction there in README.md
 
 ## DEMO
-
 - Server - https://animeapp1.herokuapp.com
 
-> “Berani dulu aja, nangis belakangan” ~ Pratama Agung Sumirat
-
 # Thanks to :
-```
 - Muhammad Iqbal
 - Isqi Ariza
 - Ega Wachid Radiegtya
-```
 
 # Sponsored :
-```
 - Heroku
 - Google cloud vps
 - Arkademy
 - Dumbways
-```
+
+> “Berani dulu aja, nangis belakangan” ~ Pratama Agung Sumirat
