@@ -29,3 +29,5 @@ Open folder and follow the instruction there in README.md
 - Dumbways
 
 > “Berani dulu aja, nangis belakangan” ~ Pratama Agung Sumirat
+
+![One Piece](https://images5.alphacoders.com/606/thumb-1920-606284.jpg)
