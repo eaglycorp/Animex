@@ -11,6 +11,3 @@ Animex scrap with PHP and module simple html dom
 - Setting database in db.php
 - Open your terminal
 - `php videos.php`
-
-<a href="http://gdriveplayer.us/embed2.php?link=fZWOM%252BkMjAHqJnleuCgO0QOawgOfUOe1kmbTsHrrx%252BJnB9iUywj5Ux5CIUdmGOtQ5X%252B%252BK1Cwy3RE97D%252BFWXMyrqyHqLZiF2ofPLcuhORaDqn53Z2uClbsGq5xLUGodTwO9ISAkGVHp5kwziwblbUT0I53Yy%252BV%252Fhi3%252BdSnfLoVCQQ43xBRcr6ZD%252BrXmGsa%252BPCb5kw2WHyCLQ4GSZt4PXcGH" target="_blank"><img src="http://cdn2.tstatic.net/sumsel/foto/bank/images/one-piece_20180724_225539.jpg" 
-alt="One Piece" width="240" height="180" border="10" /></a>
