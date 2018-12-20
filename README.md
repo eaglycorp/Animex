@@ -17,12 +17,12 @@ Open folder and follow the instruction there in README.md
 ## DEMO
 - Server - https://animeapp1.herokuapp.com
 
-# Thanks to
+## Thanks to
 - Muhammad Iqbal
 - Isqi Ariza
 - Ega Wachid Radiegtya
 
-# Sponsor by
+## Sponsor by
 - Heroku
 - Google cloud vps
 - Arkademy
