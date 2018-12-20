@@ -17,4 +17,4 @@ Open folder and follow the instruction there in README.md
 
 ## DEMO
 
-- Server - ttps://animeapp1.herokuapp.com
+- Server - https://animeapp1.herokuapp.com
