@@ -5,24 +5,24 @@ Project for Arkademy Bootcamp Task, create like Netflix App that scrape video fr
 
 > “Menikahlah sebelum mapan, Kalo sudah mapan maka harus nikah lagi” ~ Mas Iqbal
 
-## Folder:
+## Folder
 1. Web (React)
 2. Mobile (React Native)
 3. Backend (Adonis)
 4. Scrape (Php - Simple Html Dom)
 
-## How to install:
+## How to install
 Open folder and follow the instruction there in README.md
 
 ## DEMO
 - Server - https://animeapp1.herokuapp.com
 
-# Thanks to :
+# Thanks to
 - Muhammad Iqbal
 - Isqi Ariza
 - Ega Wachid Radiegtya
 
-# Sponsored :
+# Sponsor by
 - Heroku
 - Google cloud vps
 - Arkademy
