@@ -17,6 +17,7 @@ Open folder and follow the instruction there in README.md
 ## DEMO
 - Server - https://animeapp1.herokuapp.com
 - Web - http://animexweb.herokuapp.com
+- Mobile (Android) - https://drive.google.com/open?id=1obzfocrJKs3Bmnf6c5njBzn12BEIsIeG
 
 ## Thanks to
 - Muhammad Iqbal
