@@ -216,8 +216,8 @@ class AnimeController {
         const nextPage = page + 1
         const prevPage = page - 1
 
-        const genreAnime = await Database.raw('SELECT animes.* FROM animes JOIN (SELECT id_anime,COUNT(id_genre) AS genre FROM anime_genres WHERE id_genre='+genrePertama+' OR id_genre='+genreKedua+' GROUP BY id_anime HAVING genre=2) AS a ON animes.id=a.id_anime LIMIT '+limit+' OFFSET '+offset)
-        const count = await Database.raw('SELECT animes.* FROM animes JOIN (SELECT id_anime,COUNT(id_genre) AS genre FROM anime_genres WHERE id_genre='+genrePertama+' OR id_genre='+genreKedua+' GROUP BY id_anime HAVING genre=2) AS a ON animes.id=a.id_anime')
+        const genreAnime = await Database.raw('SELECT animes.* FROM animes JOIN (SELECT id_anime,COUNT(id_genre) AS genre FROM anime_genres JOIN genres on anime_genres.id_genre = genres.id WHERE genres.title="'+genrePertama+'" OR genres.title="'+genreKedua+'" GROUP BY id_anime HAVING genre=2) AS a ON animes.id=a.id_anime LIMIT '+limit+' OFFSET '+offset)
+        const count = await Database.raw('SELECT animes.* FROM animes JOIN (SELECT id_anime,COUNT(id_genre) AS genre FROM anime_genres JOIN genres on anime_genres.id_genre = genres.id WHERE genres.title="'+genrePertama+'" OR genres.title="'+genreKedua+'" GROUP BY id_anime HAVING genre=2) AS a ON animes.id=a.id_anime')
 
         return response.json({
             total: count.length,
@@ -276,7 +276,7 @@ class AnimeController {
         const nextPage = page + 1
         const prevPage = page - 1
 
-        const episode = await Database.select('videos.id', 'videos.episode', 'videos.video_embeded')
+        const episode = await Database.select('videos.*')
             .from('videos')
             .innerJoin('animes', 'videos.id_anime', 'animes.id')
             .where('animes.id', animeId)
@@ -284,7 +284,7 @@ class AnimeController {
             .limit(limit)
             .offset(offset)
 
-        const count = await Database.select('videos.id', 'videos.episode', 'videos.video_embeded')
+        const count = await Database.select('videos.*')
             .from('videos')
             .innerJoin('animes', 'videos.id_anime', 'animes.id')
             .where('animes.id', animeId)
@@ -295,8 +295,8 @@ class AnimeController {
             perPage: limit,
             page: page,
             lastPage: Math.ceil(count.length / limit),
-            nextUrl: base_url + '/anime/' + animeId + '/episode?content=' + limit + '&page=' + nextPage,
-            prevUrl: base_url + '/anime/' + animeId + '/episode?content=' + limit + '&page=' + prevPage,
+            nextUrl: base_url + '/anime/' + animeId + '/video?content=' + limit + '&page=' + nextPage,
+            prevUrl: base_url + '/anime/' + animeId + '/video?content=' + limit + '&page=' + prevPage,
             results: {
                 listVideo: episode
             }
@@ -308,14 +308,15 @@ class AnimeController {
         const animeId = request.params.animeId
         const videoId = request.params.videoId
 
-        const episode = await Database.raw('select videos.* from videos join animes on videos.id_anime = animes.id where animes.id=' + animeId + ' and videos.id =' + videoId)
-        // .select('animes.*','videos.id', 'videos.episode', 'videos.video_embeded')
-        // .from('videos')
-        // .innerJoin('animes', 'videos.id_anime', 'animes.id')
-        // .where('animes.id', animeId, 'and', 'videos.id', videoId)
+        const episode = await Database//.raw('select videos.* from videos join animes on videos.id_anime = animes.id where animes.id=' + animeId + ' and videos.id =' + videoId)
+        .select('videos.*')
+        .from('videos')
+        .innerJoin('animes', 'videos.id_anime', 'animes.id')
+        .where('animes.id', animeId)
+        .andWhere('videos.id', videoId)
 
         return response.json({
-            data: episode
+            result: episode
         })
     }
 
@@ -363,54 +364,6 @@ class AnimeController {
         await Redis.set('animes', JSON.stringify(animes))
         return animes
     }
-
-    // async anime_popular({ request, response }) {
-    //     //get request
-    //     const get = request.get()
-
-    //     //for pagination
-    //     const limit = parseInt(get.content)
-    //     const page = parseInt(get.page)
-    //     const offset = (page - 1) * limit
-    //     const nextPage = page + 1
-
-    //     const animes = await Database.select('*')
-    //         .from('animes')
-    //         .orderBy('view', 'desc')
-    //         .limit(limit)
-    //         .offset(offset)
-    //     return response.json({
-    //         url: base_url + '/popular?content=' + limit + '&page=' + nextPage,
-    //         data: animes
-    //     })
-    // }
-
-    // async anime_trending({ request, response }) {
-    //     //get request
-    //     const get = request.get()
-
-    //     //for pagination
-    //     const limit = parseInt(get.content)
-    //     const page = parseInt(get.page)
-    //     const offset = (page - 1) * limit
-    //     const nextPage = page + 1
-
-    //     const year = new Date().getFullYear();
-
-    //     const animes = await Database.select('*')
-    //         .from('animes')
-    //         .where({
-    //             tahun: year,
-    //             status: 'Ongoing'
-    //         })
-    //         .orderBy('view', 'desc')
-    //         .limit(limit)
-    //         .offset(offset)
-    //     return response.json({
-    //         url: base_url + '/trending?content=' + limit + '&page=' + nextPage,
-    //         data: animes
-    //     })
-    // }
 
     async store({ request, response }) {
         const title = request.input('title')
