@@ -19,6 +19,8 @@ Open folder and follow the instruction there in README.md
 - Web - http://animexweb.herokuapp.com
 - Mobile (Android) - https://drive.google.com/open?id=1obzfocrJKs3Bmnf6c5njBzn12BEIsIeG
 
+> “Kalo orang lain bisa, kenapa harus saya?” ~ [someone](https://shafou.com)
+
 ## Thanks to
 - Muhammad Iqbal
 - Isqi Ariza
