@@ -16,7 +16,7 @@ Open folder and follow the instruction there in README.md
 
 ## DEMO
 - Server - https://animeapp1.herokuapp.com
-- Web - http://animexweb.herokuapp.com
+- Web - http://animexweb.herokuapp.com / https://animeflix.herokuapp.com
 - Mobile (Android) new - https://drive.google.com/open?id=1hnywmD0UxiMTPSGdf4JpHeqv5PFOvRnC
 
 > “Kalo orang lain bisa, kenapa harus saya?” ~ [someone](https://shafou.com)
