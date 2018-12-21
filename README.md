@@ -1,5 +1,5 @@
 # Animex
-[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/badges/shields.svg)](https://github.com/Arcademy/Animex) [![](https://img.shields.io/github/issues/Arcademy/Animex.svg)](https://github.com/Arcademy/Animex) [![](https://img.shields.io/github/forks/Arcademy/Animex.svg)](https://github.com/Arcademy/Animex) [![](https://img.shields.io/github/stars/Arcademy/Animex.svg)](https://github.com/Arcademy/Animex) [![](https://img.shields.io/twitter/url/https/github.com/rsmnarts/todolist.svg?style=social)](https://twitter.com/rsmnarts)
+[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/badges/shields.svg)](https://github.com/Acardemy/Animex) [![](https://img.shields.io/github/issues/Acardemy/Animex.svg)](https://github.com/Acardemy/Animex) [![](https://img.shields.io/github/forks/Acardemy/Animex.svg)](https://github.com/Acardemy/Animex) [![](https://img.shields.io/github/stars/Acardemy/Animex.svg)](https://github.com/Acardemy/Animex) [![](https://img.shields.io/twitter/url/https/github.com/rsmnarts/todolist.svg?style=social)](https://twitter.com/rsmnarts)
 
 Project for Arkademy Bootcamp Task, create like Netflix App that scrape video from video streaming website, post to database, serve REST API to client (mobile and web)
 
