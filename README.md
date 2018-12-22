@@ -15,8 +15,8 @@ Project for Arkademy Bootcamp Task, create like Netflix App that scrape video fr
 Open folder and follow the instruction there in README.md
 
 ## DEMO
-- Server - https://animeapp1.herokuapp.com
-- Web - http://animexweb.herokuapp.com / https://animeflix.herokuapp.com
+- Server - http://35.187.247.31/ (Recomended) / https://animeapp1.herokuapp.com
+- Web - http://35.240.221.191/ (Recomended) / http://animexweb.herokuapp.com / https://animeflix.herokuapp.com
 - Mobile (Android) new - [Google Drive](https://drive.google.com/open?id=1hnywmD0UxiMTPSGdf4JpHeqv5PFOvRnC) / [Github Release](https://github.com/Acardemy/Animex/releases)
 
 > “Kalo orang lain bisa, kenapa harus saya?” ~ [someone](https://shafou.com)
