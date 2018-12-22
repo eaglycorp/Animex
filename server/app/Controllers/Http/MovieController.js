@@ -2,8 +2,7 @@
 const Anime = use('App/Models/Anime')
 const Database = use('Database')
 const Redis = use('Redis')
-const base_url = 'http://192.168.0.37:3333/api'
-// const base_url = 'http://localhost:3333/api'
+const base_url = 'http://35.187.247.31/api'
 
 class AnimeController {
 
