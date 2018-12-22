@@ -820,3 +820,35 @@ h6,
   line-height: 1.1;
   color: inherit;
 }
+
+#search {
+  float: right;
+  width: 250px;
+}
+
+.search {
+  width: 230px;
+  height: 30px;
+  position: relative;
+  left: 140px;
+  float: left;
+  line-height: 22px;
+}
+
+  .search input {
+      position: absolute;
+      float: Left;
+      margin-left: 350px;
+      -webkit-transition: all 0.7s ease-in-out;
+      -moz-transition: all 0.7s ease-in-out;
+      -o-transition: all 0.7s ease-in-out;
+      transition: all 0.7s ease-in-out;
+      height: 30px;
+      line-height: 18px;
+      border-radius:20px;
+  }
+
+      .search:hover input, .search input:focus {
+          width: 200px;
+          margin-left: -176px;
+      }

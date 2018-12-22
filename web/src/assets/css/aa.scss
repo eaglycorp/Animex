@@ -1,0 +1,188 @@
+.contain {
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero {
+  height: 305px;  
+  margin:0;
+  position: relative;
+  overflow: hidden;
+  z-index:1;    
+}
+
+.hero:before {
+  content:  '';
+  position:absolute;
+  overflow: hidden;
+  top:0; left:0;
+  background:#111111;
+  z-index:-1;
+ 
+  transform: skewY(-3.3deg);
+  transform-origin:0 0;
+  
+  /* //chrome antialias fix */
+  -webkit-backface-visibility: hidden; 
+  
+}
+
+.cover {
+  position: absolute;
+  top: 120px;
+  left: 40px;
+  z-index: 2;
+}
+
+.detailss {
+  
+  padding: 130px 0 0 280px;
+  
+  
+  .title1 {
+    color: white;
+    font-size: 30px;
+    padding-top:5px;
+    position: relative;
+
+    span {
+      position: absolute;
+      top: 3px;
+      margin-left: 12px;
+      background: #C4AF3D;
+      border-radius: 5px;
+      color: #544C21;
+      font-size: 14px;
+      padding: 0px 4px;
+      
+    }
+  }
+
+  .title2 {    
+    color: #C7C1BA;
+    font-size: 23px;    
+    font-weight: 300;
+  }
+  
+  
+  .likes {
+    margin-left: 0px;
+  }
+  
+  
+  .likes:before {
+    content: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/icon_like.png");
+    position: relative;
+    padding-right: 7px;
+  }
+
+}
+
+.description {
+  
+  bottom: 0px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #B1B0AC;
+  
+}
+
+.column1 {
+  padding-left: 50px;
+  padding-top: 120px;
+  width: 220px;
+  float: left;
+  text-align: center;
+}
+
+.tag {
+  background: #DB202C;
+  color: #fff;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background: #ddd;
+}
+
+.column2 {
+  padding-left: 41px;
+  margin-left: 20px;
+  width: 75%;
+  float: left;
+}
+
+.avatars {
+  margin-top: 23px;
+  
+  img {
+    cursor: pointer;
+  }
+  
+  img:hover {
+    opacity: 0.6;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+/* //star rating stuff via: https://codepen.io/jamesbarnett/pen/vlpkh/ */
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  margin-top: 0;
+  font-size: 1em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+.trailer-preview {
+   background-color: #DB202C;
+   position: absolute;
+   z-index: 3;
+   top: 240px;
+   left: 114px;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   color: white;
+   font-size: 36px;
+   text-align: center;
+   padding-top: 4px;
+   padding-left: 4px;
+   &:hover, &:disabled, &:active, &:focus {
+      background-color: #ff3d49;
+      color: white;
+   }
+   i {
+      margin-left: 3px;
+   }
+}

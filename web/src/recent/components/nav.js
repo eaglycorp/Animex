@@ -23,13 +23,11 @@ export default class Index extends React.Component {
     if(this.state.toSearch===true){
       return <Redirect to={'/search/'+this.state.search}/>
     }
-   return (
+    return (
       <nav className="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <div className="container">
-        <Link to="/">
-          <a className="navbar-brand">
-          <img src="https://bit.ly/2EC6kKY"/>
-          </a>
+        <Link to ="/" className="navbar-brand">
+          <b>Recently Added</b>
         </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
@@ -38,22 +36,14 @@ export default class Index extends React.Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-              <Link to="/">
-                <a className="nav-link">Home <span className="sr-only">(current)</span></a>
-              </Link>
-              </li>
-              <li className="nav-item">
-              <Link to="/movies">
-                <a className="nav-link" href="/Movies">Movies</a>
-              </Link>
-              </li>
-              <li className="nav-item">
-              <Link to="/recent">
-                <a className="nav-link" href="/Updated">Recently Added</a>
-              </Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">My List</a>
+                <div class="input-group">
+                  <select className="form-control bg-dark" id="inputGroupSelect01">
+                    <option selected>Genres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
               </li>
             </ul>
             <div class="search">

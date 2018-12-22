@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import * as actionCreate from '../../../redux/actions/getAnime';
+import {connect} from 'react-redux';
 
-export default class Index extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <div id="myCarousel" className="carousel slide" data-ride="carousel">
@@ -12,7 +14,7 @@ export default class Index extends React.Component {
         </ol>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img className="first-slide" src="https://bit.ly/2BvgfxL" alt="First slide"/>
+            <img className="first-slide" style={{maxWidth: '100%', maxHeight: '100%'}} src="https://bit.ly/2BvgfxL" alt="First slide"/>
             <div className="container">
               <div className="carousel-caption text-left">
                 <p><a className="btn btn-danger" href="#" role="button"><span className="glyphicon glyphicon-play"></span> Play</a>&nbsp;<a className="btn btn-danger" href="#"><span className="glyphicon glyphicon-plus"></span> My List</a></p>
@@ -22,17 +24,17 @@ export default class Index extends React.Component {
             </div>
           </div>
           <div className="carousel-item">
-            <img className="second-slide" src="https://bit.ly/2EEmHGE" alt="Second slide"/>
+            <img className="second-slide" style={{maxWidth: '100%', maxHeight: '100%'}} src="https://bit.ly/2EEmHGE" alt="Second slide"/>
             <div className="container">
               <div className="carousel-caption text-left">
-                <p><a className="btn btn-danger" href="#" role="button"><span className="glyphicon glyphicon-play"></span> Play</a>&nbsp;<a className="btn btn-danger" href="#"><span className="glyphicon glyphicon-plus"></span> My List</a></p>
+                <p><Link to='/movies/play/' onClick={()=>this.props.dispatchURL(this.props.getEpisode.episode[0].video_embeded)} className="btn btn-danger" role="button"><span className="glyphicon glyphicon-play"></span> Play</Link>&nbsp;<a className="btn btn-danger" href="#"><span className="glyphicon glyphicon-plus"></span> My List</a></p>
                 <h3>Watch Ao No Exorcist Now</h3>
                 <p>He's an ordinary man living an unremarkable life.</p>
               </div>
             </div>
           </div>
           <div className="carousel-item">
-            <img className="third-slide" src="https://bit.ly/2LrSBH1" alt="Third slide"/>
+            <img className="third-slide" style={{maxWidth: '100%', maxHeight: '100%'}} src="https://bit.ly/2LrSBH1" alt="Third slide"/>
             <div className="container">
               <div className="carousel-caption text-left">
                 <p><a className="btn btn-danger" href="#" role="button"><span className="glyphicon glyphicon-play"></span> Play</a>&nbsp;<a className="btn btn-danger" href="#"><span className="glyphicon glyphicon-plus"></span> My List</a></p>
@@ -54,3 +56,9 @@ export default class Index extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state)=>{
+    return state
+}
+
+export default connect (mapStateToProps, actionCreate)(Index);

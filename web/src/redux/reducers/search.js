@@ -1,12 +1,12 @@
 const initialState = {
-    url: ''
+    search: []
 }
 
 const counter = (state = initialState, action)=>{
     switch (action.type){
-        case "ADD_URL":
+        case "ADD_SEARCH":
          const newState ={
-             url:action.payload
+             search:action.payload
          }
          return newState;
          default: 
