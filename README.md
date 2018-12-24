@@ -23,8 +23,6 @@ Open folder and follow the instruction there in README.md
 
 ## Team
 
-> Or Contributors/People
-
 | <a href="https://github.com/mbayusaputro" target="_blank">**Bayu**</a> | <a href="https://github.com/ammadmuslim" target="_blank">**Rois**</a> | <a href="https://github.com/tazirahmb" target="_blank">**Zira**</a> | <a href="https://github.com/ariefyusron" target="_blank">**Yusron**</a> | <a href="https://github.com/fitraaditama7" target="_blank">**Fitra**</a> | <a href="https://github.com/rsmnarts" target="_blank">**Risman**</a> |
 | :---: |:---:| :---:| :---:| :---:| :---:|
 | [![FVCproductions](https://avatars1.githubusercontent.com/u/20610733?s=460&v=4)](http://fvcproductions.com)    | [![FVCproductions](https://avatars2.githubusercontent.com/u/44726327?s=460&v=4)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/20166436?s=400&v=4)](http://fvcproductions.com)  | [![FVCproductions](https://avatars0.githubusercontent.com/u/43350730?s=460&v=4)](http://fvcproductions.com)  | [![FVCproductions](https://avatars1.githubusercontent.com/u/44829651?s=460&v=4)](http://fvcproductions.com)  | [![FVCproductions](https://avatars0.githubusercontent.com/u/40693945?s=460&v=4)](http://fvcproductions.com)  |
