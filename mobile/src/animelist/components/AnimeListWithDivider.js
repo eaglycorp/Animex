@@ -31,8 +31,8 @@ class AnimeListWithDivider extends Component {
                         <Text>{item.alphabet}</Text>
                     </ListItem>
                     {item.animes.map((anime) => 
-                          <ListItem onPress={() => this.props.navigation.navigate("detail")}>
-                              <Text>{anime}</Text>
+                          <ListItem onPress={() => this.props.navigation.navigate("detail", {itemId: anime.id, title: anime.title})}>
+                              <Text>{anime.title}</Text>
                           </ListItem>    
                     )}
                     </View>

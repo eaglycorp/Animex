@@ -12,19 +12,15 @@ import AccountStack from './src/animeaccount/screen/AnimeAccountScreen';
 import GenreStack from './src/animegenre/AnimeGenreScreen';
 
 import {Provider} from 'react-redux';
-import reducers from './src/public/controller/redux/store';
+import store from './src/public/controller/redux/store';
 
-// import getPopularAnime from './src/public/controller/AnimeController';
+import Colors from './src/assets/colors';
 
 export default class App extends Component {
-  
-//   componentDidMount() {
-//     getPopularAnime(10);
-//  }
 
   render() {
     return (
-      <Provider store={reducers}>
+      <Provider store={store}>
       <StyleProvider style={getTheme(commonColor)}>
         <AppContainer />
       </StyleProvider>
@@ -35,11 +31,38 @@ export default class App extends Component {
 
 const RootStack = createBottomTabNavigator(
   {
-    home: {screen: HomeStack},
-    search: {screen: SearchStack},
-    genre: {screen: GenreStack},
-    animelist: {screen: ListStack},
-    account: {screen: AccountStack}
+    Home: {screen: HomeStack},
+    Search: {screen: SearchStack},
+    Genre: {screen: GenreStack},
+    List: {screen: ListStack},
+    Account: {screen: AccountStack}
+  },
+  {
+    lazy: true,
+    tabBarOptions: {
+      style: {backgroundColor: Colors.pureBlack},
+      activeTintColor: Colors.primaryColor,
+      inactiveTintColor: Colors.pureWhite
+    },
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `home`;
+        } else if (routeName === 'Search') {
+          iconName = `search`;
+        } else if (routeName === 'Genre') {
+          iconName = `albums`;
+        } else if (routeName === 'List') {
+          iconName = `list`;
+        } else if (routeName === 'Account') {
+          iconName = `contact`;
+        }
+
+        return <Icon name={iconName} style={{color: tintColor, fontSize: 20}} />;
+      },
+    })
   }
 );
 

@@ -1,114 +1,65 @@
 import React, {Component} from 'react';
 import {
     Text,
-    View,
-    H1,
-    List,
-    ListItem,
     Content,
     Button,
-    Spinner
+    Container,
+    Col,
+    Header,
+    Title,
+    Body
 } from 'native-base';
-import AnimeListWithScore from '../public/components/AnimeListWithScore';
 
+import AnimeListWithScore from '../public/components/AnimeListWithScore';
 import AnimeDetailScreen from '../animedetail/AnimeDetailScreen';
 import AnimePlayerScreen from '../animeplayer/AnimePlayerScreen';
 
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import {ScrollView} from 'react-native';
 
-import axios from 'axios';
+import Colors from '../assets/colors';
+import Loader from '../public/components/Loader';
+
+import {connect} from 'react-redux';
+import { getGenreAnime, getGenreList, getGenreTitle } from '../public/controller/actions/actList';
+
 
 class AnimeGenreScreen extends Component {
-    
-    constructor() {
-        super();
-        this.state = {
-            genre: [],
-            animeList: [],
-            loadingState: true
-        }
-    }
 
     componentDidMount() {
-        this.getAnimeGenre();
-        setTimeout(() => 
-            this.setState({loadingState: false})
-        , 20000);
-    }
-
-    getAnimeGenre = () => {
-        axios.get('https://animeapp1.herokuapp.com/api/genre')
-        .then((res) => {
-            // console.log(res.data.results)
-            this.setState({
-                genre: res.data
-            })
-        })
-        .catch((err) => {
-            alert(err)
-        })        
-    }
-
-    getGenreList = (genre = 'action') => {
-        axios.get('https://animeapp1.herokuapp.com/api/genre/' + genre)
-        .then((res) => {
-            // console.log(res.data.results)
-            this.setState({
-                animeList: res.data.result
-            })
-        })
-        .catch((err) => {
-            alert(err)
-        })        
+        this.props.dispatch(getGenreTitle('Action'));
+        this.props.dispatch(getGenreAnime('Action', 10, 1));
+        this.props.dispatch(getGenreList());
     }
     
     render() {
 
-        const listLatest = [
-            {
-                name: 'Cardcaptor Sakura',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-            {
-                name: 'Akame ga Kill',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-            {
-                name: 'Akame ga Kill',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-        ]
-
-        //when genre button clicked, the list will filtered by selected genre and the button will be filled
-        genre = ['horror', 'action', 'adventrue', 'mystery', 'sci-fi', 'fantasy', 'shounen',  'shoujou', 'seinen', 'josei'];
-
-        if(this.state.loadingState) return (
-            <View>
-                <Text>Wait a moment...</Text>
-                <Spinner/>
-            </View>
-        )
-
-        else return(
-            <Content>
-                <ScrollView horizontal> 
-                    {this.state.genre.map((data) =>     
-                        <Button small bordered rounded key={data.toString()} style={{margin: 4}} onPress={() => this.getGenreList(data.title)}>
+        return(
+            <Container>
+                <Loader isLoading={this.props.loading} />
+            <Header style={{backgroundColor: Colors.pureBlack}}>
+                    <Body style={{marginLeft: 16}}>
+                    <Title>{this.props.title}</Title>
+                    </Body>
+            </Header>
+            <Col size={1}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{translateY: 12, paddingHorizontal: 8}}> 
+                    {this.props.genreList.map((data) =>     
+                        <Button small bordered rounded key={data.toString()} style={{marginRight: 4}} onPress={() => {this.props.dispatch(getGenreTitle(data.title)); this.props.dispatch(getGenreAnime(data.title, 10, 1))}}>
                             <Text>{data.title}</Text>
                         </Button>
                     )}
                 </ScrollView>
+                    </Col>
+                    <Col size={11}>
+                        <Content>
                 <AnimeListWithScore
-                    data={this.state.animeList}
-                />
+                    data={this.props.genreData}
+                    isLoading={this.props.loading}
+                    />
             </Content>
+                    </Col>
+                    </Container>
         )
     }
 }
@@ -122,11 +73,24 @@ const GenreStack = createStackNavigator(
     {
         defaultNavigationOptions: {
             headerStyle: {
-                backgroundColor: '#000'
+                backgroundColor: Colors.pureBlack,
+                shadowOpacity: 0,
+                shadowOffset: {
+                  height: 0,
+                },
+                shadowRadius: 0,
             },
-            headerTintColor: '#FFF'
+            headerTintColor: Colors.pureWhite
         }
     }
 );
 
-export default createAppContainer(GenreStack);
+const mapStateToProps = (state) => ({
+    genreData: state.list.genreData,
+    genreList: state.list.genreList,
+    title: state.list.genreTitle,
+    loading: state.list.isLoading
+})
+
+export default createAppContainer(connect(mapStateToProps)(AnimeGenreScreen));  
+ 

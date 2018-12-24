@@ -1,46 +1,39 @@
 import React, {Component} from 'react';
 import {
-    Text,
-    View
+    Container,
+    Content
 } from 'native-base';
 import AnimeListWithScore from '../../public/components/AnimeListWithScore';
 
-import axios from 'axios';
+import Loader from '../../public/components/Loader';
 
-export default class AnimeListTopAll extends Component {
-    
-    constructor() {
-        super();
-        this.state = {
-            topAllAnime: []
-        }
-    }
+import {connect} from 'react-redux';
+import { getTopAll } from '../../public/controller/actions/actList';
+
+class AnimeListTopAll extends Component {
 
     componentDidMount() {
-        this.getTopAllAnime();
-    }
-
-    //maybe the content number can placed in redux?
-    getTopAllAnime() {
-        axios.get('https://animeapp1.herokuapp.com/api?sort=TopAll&content=50&page=1')
-        .then((res) => {
-            console.log(res.data.results)
-            this.setState({
-                topAllAnime: res.data.results
-            })
-        })
-        .catch((err) => {
-            alert(err)
-        })
+        this.props.dispatch(getTopAll(10,1));
     }
 
     render() {
         return(
-            <View>
+            <Container>
+                    <Content>
+                    <Loader isLoading={this.props.loading} />
                 <AnimeListWithScore
-                    data={this.state.topAllAnime}
-                />
-            </View>
+                    data={this.props.topAllData}
+                    isLoading={this.props.loading}
+                    />
+                    </Content>
+            </Container>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    topAllData: state.list.topAllData,
+    loading: state.list.isLoading
+})
+
+export default connect(mapStateToProps)(AnimeListTopAll);

@@ -10,6 +10,7 @@ import {
 } from 'native-base';
 import PropTypes from 'prop-types';
 import Styles from '../../assets/styles';
+import NumberFormat from 'react-number-format';
 
 class AnimeDetailProps extends Component {
     
@@ -18,20 +19,15 @@ class AnimeDetailProps extends Component {
         const {genre, year, desc, status, rating, score, view} = this.props;
         
         return(
-            <View>
-                <ScrollView horizontal>
-                    {genre.map((data) =>     
-                        <Button small bordered rounded key={data.toString()} style={{margin: 4}}>
-                            <Text>{data.title}</Text>
-                        </Button>
-                    )}
-                </ScrollView>
-                <Text note>Year : {year}</Text>
-                <Text note>status : {status}</Text>
-                <Text note>Rating : {rating}</Text>
-                <Text note>Score : {score}</Text>
-                <Text note>Total Viewers : {view}</Text>
-                <Text>{desc}</Text>
+            <View style={{alignItems: 'flex-end'}}>
+                <View style={{width: 180}}>
+                    <Text note><Text note style={{fontWeight: "bold"}}>genre : </Text>{genre.map((data) => <Text note>{data.title}, </Text>)}</Text>
+                    <Text note><Text note style={{fontWeight: "bold"}}>Year :</Text> {year}</Text>
+                    <Text note><Text note style={{fontWeight: "bold"}}>status :</Text> {status}</Text>
+                    <Text note><Text note style={{fontWeight: "bold"}}>Rating :</Text> {rating}</Text>
+                    <Text note><Text note style={{fontWeight: "bold"}}>Score :</Text> {score}</Text>
+                    <Text note><Text note style={{fontWeight: "bold"}}>Total Viewers :</Text> {view}</Text>
+                </View>
             </View>
         )
     }
@@ -42,8 +38,8 @@ AnimeDetailProps.propTypes = {
     year: PropTypes.string,
     status: PropTypes.string,
     rating: PropTypes.string,
-    score: PropTypes.string,
-    view: PropTypes.string,
+    score: PropTypes.number,
+    view: PropTypes.number,
     desc: PropTypes.string
 }   
 

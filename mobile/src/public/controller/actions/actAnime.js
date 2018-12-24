@@ -1,10 +1,30 @@
-const getAnime = (data) => {
-    return {
-      type: 'GET_ANIME',
-      payload: data
-    }
+import axios from 'axios';
+
+const baseURL = 'https://animeapp1.herokuapp.com/api';
+
+const getAnimeDetail = (animeId) => {
+  return {
+    type: 'GET_DETAIL',
+    payload: axios.get(`${baseURL}/anime/${animeId}`)
   }
-    
-  export {
-    getAnime
+}
+
+const getRelated = (genre1, genre2) => {
+  return {
+    type: 'GET_RELATED',
+    payload: axios.get(`${baseURL}/related?genrePertama=${genre1}&genreKedua=${genre2}&content=5&page=1`)
   }
+}
+
+const getEpisodeList = (animeId) => {
+  return {
+    type: 'GET_EPISODE',
+    payload: axios.get(`${baseURL}/anime/${animeId}/video`)
+  }
+}
+
+export {
+  getAnimeDetail,
+  getRelated,
+  getEpisodeList
+}

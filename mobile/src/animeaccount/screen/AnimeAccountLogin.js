@@ -23,7 +23,7 @@ export default class AnimeAccountLogin extends Component{
     
     render() {
         return(
-            <Container style={{alignContent:'center', backgroundColor: 'black'}}>
+            <Container style={{alignContent:'center'}}>
                     <View style={{margin: 10}}>
                         <Item floatingLabel style={{marginVertical: 8}}>
                             <Label style={{color: 'white'}}>Username or Email</Label>
@@ -33,13 +33,10 @@ export default class AnimeAccountLogin extends Component{
                             <Label style={{color: 'white'}}>Password</Label>
                             <Input secureTextEntry={true} style={{color: 'white'}} />
                         </Item>
-                        <Button light bordered block last style={{marginTop: 24, marginBottom: 16}} onPress={() => this.props.navigation.navigate('TabScreen')}>
+                        <Button block last style={{marginTop: 24, marginBottom: 16}} onPress={() => this.props.navigation.navigate('TabScreen')}>
                             <Text>SIGN IN</Text>
                         </Button>
-                        <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
                             <Text style={{color: 'white', fontWeight: 'bold'}}>FORGOT PASSWORD?</Text>
-                            <Text style={{color: 'white', fontWeight: 'bold'}}>JOIN NOW</Text>
-                        </View>
                     </View>
             </Container>
         )

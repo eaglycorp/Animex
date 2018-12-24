@@ -319,7 +319,7 @@ export default (variables /*: * */ = variable) => {
       fontFamily: variables.btnFontFamily,
       marginLeft: 0,
       marginRight: 0,
-      color: variables.inverseTextColor,
+      color: variables.textColor,
       fontSize: variables.btnTextSize,
       paddingHorizontal: 16,
       backgroundColor: "transparent"

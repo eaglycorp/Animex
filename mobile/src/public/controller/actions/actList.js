@@ -4,68 +4,62 @@ const baseURL = 'https://animeapp1.herokuapp.com/api';
 
 //====================================================axios
 
-// getTopAllAnime = (content) => {
-//         axios.get(baseURL + '?sort=TopAll&content=' + content + '&page=1')
-//         .then((res) => {
-//             console.log(res.data.results)
-//             this.setState({
-//                 topAll: this.props.dispatch(getTopAll(res.data.results))
-//             })
-//         })
-//         .catch((err) => {
-//             alert(err)
-//         })
-// }
+const getRandom = () => {
+  return {
+    type: 'GET_RANDOM',
+    payload: axios.get(`${baseURL}?sort=random&content=1`)
+  }
+}
 
-// getTrendingAnime = (content) => {
-//     axios.get(baseURL + '?sort=Trending&content=' + content + '&page=1')
-//     .then((res) => {
-//         console.log(res.data.results)
-//         this.setState({
-//                 trending: this.props.dispatch(getTrending(res.data.results))
-//             })
-//         })
-//         .catch((err) => {
-//             alert(err)
-//         })
-//     }
-    
-    getPopularAnime = (content) => {
-        axios.get(baseURL +'?sort=Popular&content=' + content + '&page=1')
-        .then((res) => {
-            console.log(res.data.results)
-            return res.data.results
-        })
-        .catch((err) => {
-            alert(err)
-        })
+const getGenreAnime = (genre, content, pageNo) => {
+    return {
+      type: 'GET_GENRE_ANIME',
+      payload: axios.get(`${baseURL}/genre/${genre}?content=${content}&page=${pageNo}`)
     }
+  }
 
-//====================================================axios
+  const getGenreTitle = (genre) => {
+    return {
+      type: 'GET_GENRE_TITLE',
+      payload: genre
+    }
+  }
 
-const getTrending = (data) => {
+  const getGenreList = (genre) => {
+    return {
+      type: 'GET_GENRE_LIST',
+      payload: axios.get(`${baseURL}/genre`),
+      title: genre
+    }
+  }
+
+const getTrending = (content, pageNo) => {
     return {
       type: 'GET_TRENDING',
-      payload: data
+      payload: axios.get(`${baseURL}?sort=Trending&content=${content}&page=${pageNo}`)
     }
   }
   
-const getPopular = (data) => {
+const getPopular = (content, pageNo) => {
   return {
     type: 'GET_POPULAR',
-    payload: data
+    payload: axios.get(`${baseURL}?sort=Popular&content=${content}&page=${pageNo}`)
   }
 }
 
-const getTopAll = (data) => {
+const getTopAll = (content, pageNo) => {
   return {
     type: 'GET_TOP_ALL',
-    payload: data
+    payload: axios.get(`${baseURL}?sort=TopAll&content=${content}&page=${pageNo}`)
   }
 }
-  
+
 export {
+  getPopular,
   getTrending,
   getTopAll,
-  getPopular
+  getRandom,
+  getGenreList,
+  getGenreAnime,
+  getGenreTitle
 }

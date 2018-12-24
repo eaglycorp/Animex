@@ -1,38 +1,46 @@
 import React, { Component } from 'react';
-import { FlatList, Image, TouchableWithoutFeedback } from 'react-native';
+import { FlatList, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
 import {
     Card,
     CardItem,
     View,
     H1,
-    Text
+    Text,
+    Spinner
 } from 'native-base';
 import PropTypes from 'prop-types';
 import Styles from '../../assets/styles';
 import {withNavigation} from 'react-navigation';
 
 import {getAnime} from '../controller/actions/actAnime';
+import Colors from '../../assets/colors';
 
 class ListAnime extends Component {
     
     render() {
 
-        const {title, data, href} = this.props;
+        const {title, data, href, isLoading} = this.props;
         
+        const more = (href != '') ? 'more':'';
+
         return(
-            <View>
-                <H1>{title}</H1>
-                <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate(href)}>
-                    <Text>More</Text>
-                </TouchableWithoutFeedback>
+            <View style={{marginVertical: 8}}>
+                <View style={Styles.animeListHeader}>
+                    <H1>{title}</H1>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate(href)}>
+                        <Text note style={{color: Colors.primaryColor}}>{more}</Text>
+                    </TouchableOpacity>
+                </View>
                 <FlatList
                     data={data}
+                    keyExtractor={(item) => item.id}
                     showsHorizontalScrollIndicator={false}
                     horizontal={true}
+                    contentContainerStyle={{margin: 16}}
                     renderItem={({item}) => 
-                        <Card>
-                                <TouchableWithoutFeedback onPress={() => {
-                                    this.props.navigation.navigate("detail", {itemId: item.id})
+                        <Card style={{marginRight: 8}}>
+                                <TouchableHighlight onPress={() => {
+                                    this.props.navigation.navigate("detail", {itemId: item.id, title: item.title})
                                 }}>
                                 <View>
                                     <Image
@@ -42,8 +50,9 @@ class ListAnime extends Component {
                                         loadingIndicatorSource={true}
                                         />            
                                 </View>
-                                </TouchableWithoutFeedback>
-                            </Card>
+                                </TouchableHighlight>
+                             
+                        </Card>
                     }
                 >
                 </FlatList>
@@ -55,7 +64,8 @@ class ListAnime extends Component {
 ListAnime.propTypes = {
     title: PropTypes.string.isRequired,
     data: PropTypes.array,
-    href: PropTypes.string.isRequired
+    href: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool
 }   
 
 export default withNavigation(ListAnime);

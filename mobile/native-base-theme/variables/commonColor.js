@@ -2,6 +2,8 @@
 
 import color from "color";
 
+import Colors from '../../src/assets/colors';
+
 import { Platform, Dimensions, PixelRatio } from "react-native";
 
 const deviceHeight = Dimensions.get("window").height;
@@ -87,8 +89,8 @@ export default {
   },
 
   // Card
-  cardDefaultBg: "#fff",
-  cardBorderColor: "#ccc",
+  cardDefaultBg: Colors.pureBlack,
+  cardBorderColor: Colors.pureBlack,
   cardBorderRadius: 2,
   cardItemPadding: platform === "ios" ? 10 : 12,
 
@@ -105,7 +107,7 @@ export default {
   checkboxTickColor: "#fff",
 
   // Color
-  brandPrimary: platform === "ios" ? "#007aff" : "#AA0000",
+  brandPrimary: platform === "ios" ? "#007aff" : Colors.primaryColor,
   brandInfo: "#62B1F6",
   brandSuccess: "#5cb85c",
   brandDanger: "#d9534f",
@@ -114,7 +116,7 @@ export default {
   brandLight: "#f4f4f4",
 
   //Container
-  containerBgColor: "#DDF",
+  containerBgColor: Colors.backgroundColor,
 
   //Date Picker
   datePickerTextColor: "#000",
@@ -149,7 +151,7 @@ export default {
 
   // Header
   toolbarBtnColor: platform === "ios" ? "#007aff" : "#fff",
-  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : "#AA0000",
+  toolbarDefaultBg: platform === "ios" ? "#F8F8F8" : Colors.primaryColor,
   toolbarHeight: platform === "ios" ? 64 : 56,
   toolbarSearchIconSize: platform === "ios" ? 20 : 23,
   toolbarInputColor: platform === "ios" ? "#CECDD2" : "#fff",
@@ -160,7 +162,7 @@ export default {
   toolbarDefaultBorder: platform === "ios" ? "#a7a6ab" : "#3F51B5",
   get statusBarColor() {
     return color(this.toolbarDefaultBg)
-      .darken(0.2)
+      .darken(0.5)
       .hex();
   },
   get darkenHeader() {
@@ -181,7 +183,7 @@ export default {
   inputErrorBorderColor: "#ed2f2f",
   inputHeightBase: 50,
   get inputColor() {
-    return this.textColor;
+    return Colors.pureBlack;
   },
   get inputColorPlaceholder() {
     return "#575757";
@@ -240,8 +242,8 @@ export default {
   tabFontSize: 15,
 
   // Text
-  textColor: "#000",
-  inverseTextColor: "#fff",
+  textColor: Colors.pureWhite,
+  inverseTextColor: Colors.pureBlack,
   noteFontSize: 14,
   get defaultTextColor() {
     return this.textColor;

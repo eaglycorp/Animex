@@ -25,6 +25,8 @@ import {
     Icon
 } from 'native-base';
 
+import {TouchableOpacity, Modal, View} from 'react-native';
+
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import AnimeDetailScreen from '../../animedetail/AnimeDetailScreen';
@@ -32,28 +34,30 @@ import AnimePlayerScreen from '../../animeplayer/AnimePlayerScreen';
 import AnimeListWithScore from './AnimeListWithScore';
 
 import axios from 'axios';
+import Colors from '../../assets/colors';
+import Loader from './Loader';
+
+import {connect} from 'react-redux';
+import { getSearchResult } from '../controller/actions/actSearch';
 
 class SearchScreen extends Component {
     
     constructor() {
         super();
         this.state = {
-            searchResult: [],
-            loadingState: true
+            deleteIcon: '',
+            searchIcon: '',
         }
     }
-    
-    getSearchResult = (textInput) => {
-        axios.get('https://animeapp1.herokuapp.com/api?search=' + textInput)
-        .then((res) => {
-            // console.log(res.data.results)
-            this.setState({
-                searchResult: res.data.results
-            })
+
+    stringInput = '';
+
+    clearText = () => {
+        this.textInput._root.clear();
+        this.setState({
+            deleteIcon: '',
+            searchIcon: ''
         })
-        .catch((err) => {
-            alert(err)
-        })        
     }
 
     render() {
@@ -61,17 +65,30 @@ class SearchScreen extends Component {
             <Container>
                 <Header searchBar style={{backgroundColor: 'black'}}>
                     <Item>
-                        <Input placeholder="Search" onChangeText={(text) => this.getSearchResult(text)} />
-                        <Icon name='close' />
-                        <Icon name='search' />
+                        <Input
+                            placeholder="Search"
+                            ref={Input => this.textInput = Input}
+                            onChangeText={(text) => {this.stringInput = text; this.setState({deleteIcon: 'close', searchIcon: 'search'})}}
+                        />
+                        <TouchableOpacity onPress={() => this.clearText()}>
+                            <Icon name={this.state.deleteIcon} />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.dispatch(getSearchResult(this.stringInput, 10, 1))}>
+                            <Icon name={this.state.searchIcon} />
+                        </TouchableOpacity>
                     </Item>
                     <Button transparent>
                         <Text>Search</Text>
                     </Button>
                 </Header>
+                <View style={{translateY: 300, translateX: 150, position: 'absolute'}}>
+                    <Text style={{textAlign: "center"}}>{this.props.placeholder}</Text>
+                </View>
                 <Content>
+                    <Loader isLoading={this.props.loading} />
                     <AnimeListWithScore
-                        data={this.state.searchResult}
+                        data={this.props.searchData}
+                        isLoading={this.props.loading}
                     />
                 </Content>
             </Container>
@@ -94,11 +111,22 @@ const SearchStack = createStackNavigator(
     {
         defaultNavigationOptions: {
             headerStyle: {
-                backgroundColor: '#000'
+                backgroundColor: Colors.pureBlack,
+                shadowOpacity: 0,
+                shadowOffset: {
+                  height: 0,
+                },
+                shadowRadius: 0,
             },
-            headerTintColor: '#FFF'
+            headerTintColor: Colors.pureWhite
         }
     }
 );
 
-export default createAppContainer(SearchStack);
+const mapStateToProps = (state) => ({
+    searchData: state.search.searchData,
+    loading: state.search.isLoading,
+    placeholder: state.search.searchPlaceholder
+})
+
+export default createAppContainer(connect(mapStateToProps)(SearchScreen));

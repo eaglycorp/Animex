@@ -1,64 +1,28 @@
 import React, {Component} from 'react';
-import {Text, View} from 'native-base';
+import {Container, Content} from 'native-base';
 import AnimeListWithScore from '../../public/components/AnimeListWithScore';
 
-import axios from 'axios';
+import {connect} from 'react-redux';
 
-export default class AnimeListTrending extends Component {
-    
-    constructor() {
-        super();
-        this.state = {
-            trendingAnime: []
-        }
-    }
-
-    componentDidMount() {
-        this.getTrendingAnime();
-    }
-
-    //maybe the content number can placed in redux?
-    getTrendingAnime() {
-        axios.get('https://animeapp1.herokuapp.com/api?sort=Trending&content=50&page=1')
-        .then((res) => {
-            console.log(res.data.results)
-            this.setState({
-                trendingAnime: res.data.results
-            })
-        })
-        .catch((err) => {
-            alert(err)
-        })
-    }
+class AnimeListTrending extends Component {
     
     render() {
-        const listLatest = [
-            {
-                name: 'Naruto Usuzami',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-            {
-                name: 'Akame ga Kill',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-            {
-                name: 'Akame ga Kill',
-                viewers: 23432,
-                rating: '9.3',
-                cover: 'https://images-na.ssl-images-amazon.com/images/I/518VI3j73pL._SX331_BO1,204,203,200_.jpg'
-            },
-        ]
-
         return(
-            <View>
+            <Container>
+                <Content>
                 <AnimeListWithScore
-                    data={this.state.trendingAnime}
-                />
-            </View>
+                    data={this.props.trendingData}
+                    isLoading={this.props.loading}
+                    />
+                    </Content>
+            </Container>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    trendingData: state.list.trendingData,
+    loading: state.list.isLoading
+})
+
+export default connect(mapStateToProps)(AnimeListTrending);
