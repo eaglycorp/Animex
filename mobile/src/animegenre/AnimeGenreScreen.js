@@ -28,7 +28,7 @@ class AnimeGenreScreen extends Component {
 
     componentDidMount() {
         this.props.dispatch(getGenreTitle('Action'));
-        this.props.dispatch(getGenreAnime('Action', 10, 1));
+        this.props.dispatch(getGenreAnime('Action', 1));
         this.props.dispatch(getGenreList());
     }
     
@@ -64,9 +64,21 @@ class AnimeGenreScreen extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    genreData: state.list.genreData,
+    genreList: state.list.genreList,
+    title: state.list.genreTitle,
+    loading: state.list.isLoading
+})
+
 const GenreStack = createStackNavigator(
     {
-        genre: AnimeGenreScreen,
+        genre: {
+            screen: connect(mapStateToProps)(AnimeGenreScreen),
+            navigationOptions: {
+                header: null
+            }
+        },
         detail: AnimeDetailScreen,
         player: AnimePlayerScreen
     },
@@ -85,12 +97,5 @@ const GenreStack = createStackNavigator(
     }
 );
 
-const mapStateToProps = (state) => ({
-    genreData: state.list.genreData,
-    genreList: state.list.genreList,
-    title: state.list.genreTitle,
-    loading: state.list.isLoading
-})
-
-export default createAppContainer(connect(mapStateToProps)(AnimeGenreScreen));  
+export default createAppContainer(GenreStack);  
  

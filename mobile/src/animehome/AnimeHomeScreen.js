@@ -26,12 +26,13 @@ import Svg,{
     Defs,
     ClipPath
 } from 'react-native-svg';
+import { getAnimeDetail } from '../public/controller/actions/actAnime';
 
 class AnimeHomeScreen extends Component {
     
         componentDidMount() {
-            this.props.dispatch(getPopular(10,1));
-            this.props.dispatch(getTrending(10,1));
+            this.props.dispatch(getPopular(1));
+            this.props.dispatch(getTrending(1));
             this.props.dispatch(getRandom());
     }
     
@@ -58,7 +59,7 @@ class AnimeHomeScreen extends Component {
 
                         <Image
                             width="100%"
-                            href={{uri: this.props.randomData[0].thumbnail}}
+                            href={{uri: this.props.randomData[0].detailAnime.thumbnail}}
                             preserveAspectRatio="xMidYMid slice"
                             clipPath="url(#clip)"
                             />
@@ -72,14 +73,14 @@ class AnimeHomeScreen extends Component {
                             y='10%'
                             width="40%"
                             height="90%"
-                            href={{uri: this.props.randomData[0].thumbnail}}
+                            href={{uri: this.props.randomData[0].detailAnime.thumbnail}}
                             preserveAspectRatio="xMidYMid slice"
                             />
 
                     </Svg>
                     <View style={{height: 200, margin: 16, justifyContent: 'center'}}>
-                               <H3 style={{textAlign: 'right', width: 150, alignSelf: 'flex-end'}}>{(this.props.randomData[0].title || '')}</H3>
-                        <Button style={{alignSelf: "flex-end", marginTop: 16}} small onPress={() => this.props.navigation.navigate('detail', {itemId: this.props.randomData[0].id, title: this.props.randomData[0].title})}>
+                               <H3 style={{textAlign: 'right', width: 150, alignSelf: 'flex-end'}}>{(this.props.randomData[0].detailAnime.title || '')}</H3>
+                        <Button style={{alignSelf: "flex-end", marginTop: 16}} small onPress={() => {this.props.dispatch(getAnimeDetail(this.props.randomData[0])); this.props.navigation.navigate('detail', {title: this.props.randomData[0].detailAnime.title})}}>
                             <Text>WATCH NOW</Text>
                         </Button>
                     </View>
@@ -102,9 +103,16 @@ class AnimeHomeScreen extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    popularData: state.list.popularData,
+    trendingData: state.list.trendingData,
+    randomData: state.list.randomData,
+    loading: state.list.isLoading
+})
+
 const HomeStack = createStackNavigator(
     {
-        home: {screen: AnimeHomeScreen, navigationOptions: {header: null}},
+        home: {screen: connect(mapStateToProps)(AnimeHomeScreen), navigationOptions: {header: null}},
         detail: AnimeDetailScreen,
         player: AnimePlayerScreen
     },
@@ -123,11 +131,4 @@ const HomeStack = createStackNavigator(
     }
 );
 
-const mapStateToProps = (state) => ({
-    popularData: state.list.popularData,
-    trendingData: state.list.trendingData,
-    randomData: state.list.randomData,
-    loading: state.list.isLoading
-})
-
-export default createAppContainer(connect(mapStateToProps)(AnimeHomeScreen));
+export default createAppContainer(HomeStack);

@@ -3,18 +3,19 @@ import {Container, Content} from 'native-base';
 import AnimeListWithScore from '../../public/components/AnimeListWithScore';
 
 import {connect} from 'react-redux';
+import { getTrending } from '../../public/controller/actions/actList';
 
 class AnimeListTrending extends Component {
     
     render() {
         return(
             <Container>
-                <Content>
                 <AnimeListWithScore
                     data={this.props.trendingData}
-                    isLoading={this.props.loading}
+                    pageNo={this.props.trendingPage}
+                    lastPage={this.props.trendingLastPage}
+                    handleLoadMore={getTrending(this.props.trendingPage)}
                     />
-                    </Content>
             </Container>
         )
     }
@@ -22,7 +23,8 @@ class AnimeListTrending extends Component {
 
 const mapStateToProps = (state) => ({
     trendingData: state.list.trendingData,
-    loading: state.list.isLoading
+    trendingPage: state.list.trendingPage,
+    trendingLastPage: state.list.trendingLastPage
 })
 
 export default connect(mapStateToProps)(AnimeListTrending);

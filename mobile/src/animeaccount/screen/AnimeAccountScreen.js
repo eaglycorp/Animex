@@ -12,8 +12,7 @@ import AnimeAccountRegister from './AnimeAccountRegister'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import AnimeAccountScreenLoggedIn from './AnimeAccountScreenLoggedIn';
 import Colors from '../../assets/colors';
-
-const loggedin = false; //props to check if user already logged in or not
+import {connect} from 'react-redux';
 
 class AnimeAccountScreen extends Component {
 
@@ -22,17 +21,11 @@ class AnimeAccountScreen extends Component {
     };
 
     render() {
-
-        if(loggedin) {
-            return( 
-                <AnimeAccountScreenLoggedIn />
-            )
-        } else {
             return(
                 <Container style={{display: "flex", justifyContent: 'center', alignItems: 'center'}}>
                 <H3>You are not logged in</H3>
                 <Button full style={{margin: 8}} onPress={() => this.props.navigation.navigate("login")}>
-                    <Text>Sign In</Text>
+                    <Text>Login</Text>
                 </Button>
                 <Button full style={{margin: 8}} onPress={() => this.props.navigation.navigate("register")}>
                     <Text>Register</Text>
@@ -42,13 +35,20 @@ class AnimeAccountScreen extends Component {
             )
         }
     }
-}
+
+const mapStateToProps = (state) => ({
+    loggedIn: state.account.loggedIn,
+    username: state.account.username,
+    name: state.account.name,
+    email: state.account.email
+})
 
 const AccountStack = createStackNavigator(
     {
-        account: AnimeAccountScreen,
+        account: connect(mapStateToProps)(AnimeAccountScreen),
         login: AnimeAccountLogin,
-        register: AnimeAccountRegister
+        register: AnimeAccountRegister,
+        loggedInScreen: AnimeAccountScreenLoggedIn
     },
     {
         defaultNavigationOptions: {

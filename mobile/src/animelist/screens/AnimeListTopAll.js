@@ -13,19 +13,19 @@ import { getTopAll } from '../../public/controller/actions/actList';
 class AnimeListTopAll extends Component {
 
     componentDidMount() {
-        this.props.dispatch(getTopAll(10,1));
+        this.props.dispatch(getTopAll(1));
     }
 
     render() {
         return(
             <Container>
-                    <Content>
                     <Loader isLoading={this.props.loading} />
                 <AnimeListWithScore
                     data={this.props.topAllData}
-                    isLoading={this.props.loading}
+                    pageNo={this.props.topAllPage}
+                    lastPage={this.props.topAllLastPage}
+                    handleLoadMore={getTopAll(this.props.topAllPage)}
                     />
-                    </Content>
             </Container>
         )
     }
@@ -33,7 +33,9 @@ class AnimeListTopAll extends Component {
 
 const mapStateToProps = (state) => ({
     topAllData: state.list.topAllData,
-    loading: state.list.isLoading
+    loading: state.list.isLoading,
+    topAllPage: state.list.topAllPage,
+    topAllLastPage: state.list.topAllLastPage
 })
 
 export default connect(mapStateToProps)(AnimeListTopAll);

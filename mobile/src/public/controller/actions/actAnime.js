@@ -2,10 +2,10 @@ import axios from 'axios';
 
 const baseURL = 'https://animeapp1.herokuapp.com/api';
 
-const getAnimeDetail = (animeId) => {
+const getAnimeDetail = (data) => {
   return {
     type: 'GET_DETAIL',
-    payload: axios.get(`${baseURL}/anime/${animeId}`)
+    payload: data
   }
 }
 

@@ -38,7 +38,6 @@ const RootStack = createBottomTabNavigator(
     Account: {screen: AccountStack}
   },
   {
-    lazy: true,
     tabBarOptions: {
       style: {backgroundColor: Colors.pureBlack},
       activeTintColor: Colors.primaryColor,

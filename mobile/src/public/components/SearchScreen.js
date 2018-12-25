@@ -12,14 +12,7 @@ import {
     Content,
     Text,
     Header,
-    Footer,
-    Card,
-    CardItem,
-    Left,
-    Body,
-    Right,
     Button,
-    Title,
     Item,
     Input,
     Icon
@@ -33,7 +26,6 @@ import AnimeDetailScreen from '../../animedetail/AnimeDetailScreen';
 import AnimePlayerScreen from '../../animeplayer/AnimePlayerScreen';
 import AnimeListWithScore from './AnimeListWithScore';
 
-import axios from 'axios';
 import Colors from '../../assets/colors';
 import Loader from './Loader';
 
@@ -51,6 +43,7 @@ class SearchScreen extends Component {
     }
 
     stringInput = '';
+    searchQuery = '';
 
     clearText = () => {
         this.textInput._root.clear();
@@ -68,12 +61,13 @@ class SearchScreen extends Component {
                         <Input
                             placeholder="Search"
                             ref={Input => this.textInput = Input}
+                            keyboardType='web-search'
                             onChangeText={(text) => {this.stringInput = text; this.setState({deleteIcon: 'close', searchIcon: 'search'})}}
                         />
                         <TouchableOpacity onPress={() => this.clearText()}>
                             <Icon name={this.state.deleteIcon} />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.dispatch(getSearchResult(this.stringInput, 10, 1))}>
+                        <TouchableOpacity onPress={() => {this.searchQuery = this.stringInput; this.props.dispatch(getSearchResult(this.searchQuery, 1))}}>
                             <Icon name={this.state.searchIcon} />
                         </TouchableOpacity>
                     </Item>
@@ -84,23 +78,30 @@ class SearchScreen extends Component {
                 <View style={{translateY: 300, translateX: 150, position: 'absolute'}}>
                     <Text style={{textAlign: "center"}}>{this.props.placeholder}</Text>
                 </View>
-                <Content>
                     <Loader isLoading={this.props.loading} />
                     <AnimeListWithScore
                         data={this.props.searchData}
-                        isLoading={this.props.loading}
+                        pageNo={this.props.searchPage}
+                        lastPage={this.props.searchLastPage}
+                        handleLoadMore={getSearchResult(this.searchQuery, this.props.searchPage)}
                     />
-                </Content>
             </Container>
         )
     }
 }
 
+const mapStateToProps = (state) => ({
+    searchData: state.search.searchData,
+    loading: state.search.isLoading,
+    placeholder: state.search.searchPlaceholder,
+    searchPage: state.search.searchPage,
+    searchLastPage: state.search.searchLastPage
+})
 
 const SearchStack = createStackNavigator(
     {
         search: {
-            screen: SearchScreen,
+            screen: connect(mapStateToProps)(SearchScreen),
             navigationOptions: {
                 header: null
             }
@@ -123,10 +124,4 @@ const SearchStack = createStackNavigator(
     }
 );
 
-const mapStateToProps = (state) => ({
-    searchData: state.search.searchData,
-    loading: state.search.isLoading,
-    placeholder: state.search.searchPlaceholder
-})
-
-export default createAppContainer(connect(mapStateToProps)(SearchScreen));
+export default createAppContainer(SearchStack);
